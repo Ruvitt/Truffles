@@ -1,0 +1,26 @@
+.fundo {
+    height: 100vh;
+    background-color: #1BE094;
+}
+
+.formulario{
+    max-width: 500px;
+    padding: 1rem;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+}
+
+.formulario button {
+    color: rgb(255, 255, 255); 
+    font-size: 16px; 
+    background-color: #DC414C; 
+}
+
+
+.nome_input{
+    color: #DC414C;
+}
+
+.formulario input {
+    background-color: #F2F2F2;
+}
