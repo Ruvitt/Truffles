@@ -7,5 +7,6 @@ class Cliente(models.Model):
     telefone = models.CharField(max_length=11, null=False, unique=True)
     login = models.OneToOneField(User, on_delete=models.CASCADE)
     senha = models.CharField(max_length=128)
+    
     def __str__(self):
         return self.nome

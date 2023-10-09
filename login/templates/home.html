@@ -1,5 +1,43 @@
 {%extends 'base.html'%}
 {%load static %}
 {%block conteudo%}
-<h1>Arrocha Ruan</h1>
+
+<div class="container-fluid ">
+    <nav class="navbar navbar-expand-lg nav-underline">
+      <div class="container-fluid justify-content-end">
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse d-lg-flex" id="nav">
+          <a class="navbar-brand col-lg-3 me-0 ps-5" href="#">Truffles</a>
+
+          <ul class="navbar-nav col-lg-6 justify-content-lg-center">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Menu</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="">Contato</a>
+            </li>
+          </ul>
+
+          <div class="d-lg-flex col-lg-3 justify-content-lg-end pe-5">
+            <i class="bi bi-person"></i>
+          </div>
+        </div>
+      </div>
+    </nav>
+</div>
+
+<!-- Jquery funcionando -->
+<script> 
+    $(document).ready(function(){
+        
+    });
+</script>
+
 {%endblock%}
