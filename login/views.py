@@ -1,12 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
-from .models import Cliente
+from django.db import models
+from .models import Cliente, CustomUserManager
 from django.contrib import messages
-from django.contrib.auth.models import User
-# Create your views here.
+
 def home(request):
     return render(request, 'home.html')
-
 
 def login_cliente(request):
     if request.POST:
@@ -15,7 +14,7 @@ def login_cliente(request):
         user = authenticate(username=username, password=senha)
         if user is not None:
             login(request, user)
-            return redirect('/admin') #enquanto não temos a home do cliente
+            return redirect('/home')  # enquanto não temos a home do cliente logado
         else:
             messages.error(request, 'Erro no telefone ou senha')
     return render(request, 'login_cliente.html')
@@ -26,19 +25,20 @@ def cadastro_cliente(request):
         senha = request.POST.get('senha')
         nome = request.POST.get('nome')
         telefone = request.POST.get('telefone')
-        user = User.objects.filter(username=username).first() # Verifica se o usuário já existe         
-        # Cria o usuário e registra com adm
+        user = CustomUserManager.objects.filter(username=username).first()  # Verifica se o usuário já existe
+
+        # Cria o usuário e registra comum
         if user is None:
-            user = User.objects.create_user(username=username,  telefone=telefone)
+            user = CustomUserManager.objects.create_user(username=username, telefone=telefone)  # Use o modelo CustomUser
             user.set_password(senha)
             user.is_active = True
             user.save()
-            user
+
             cliente = Cliente(usuario=user, nome=nome)
             cliente.save()
             return redirect("login:login_adm")
         else:
             messages.error(request, "Usuário já cadastrado")
             return render(request, 'cadastro_cliente.html')
-    
+
     return render(request, 'cadastro_cliente.html')
