@@ -24,6 +24,10 @@ class Cliente(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'login'  # Defina aqui o campo a ser usado como nome de usuário
 
+    # Adicione related_name aos campos de relacionamento para evitar conflitos
+    groups = models.ManyToManyField('auth.Group', related_name='clientes')
+    user_permissions = models.ManyToManyField('auth.Permission', related_name='clientes')
+
     def save(self, *args, **kwargs):
         # Faz a criptografia da senha antes de salvar o cliente
         self.senha = make_password(self.senha)
@@ -31,5 +35,3 @@ class Cliente(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.login
-
-
