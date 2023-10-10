@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.db import models
-from .models import Cliente, CustomUserManager
+from .models import Cliente
 from django.contrib import messages
+from django.contrib.auth.models import User
 
 def home(request):
     return render(request, 'home.html')
@@ -12,11 +13,12 @@ def login_cliente(request):
         username = request.POST.get('login')
         senha = request.POST.get('senha')
         user = authenticate(username=username, password=senha)
+        print(user, username, senha)
         if user is not None:
             login(request, user)
             return redirect('/home')  # enquanto não temos a home do cliente logado
         else:
-            messages.error(request, 'Erro no telefone ou senha')
+            messages.error(request, 'Erro no login ou senha')
     return render(request, 'login_cliente.html')
 
 def cadastro_cliente(request):
@@ -25,18 +27,18 @@ def cadastro_cliente(request):
         senha = request.POST.get('senha')
         nome = request.POST.get('nome')
         telefone = request.POST.get('telefone')
-        user = CustomUserManager.objects.filter(username=username).first()  # Verifica se o usuário já existe
+        cliente = Cliente.objects.filter(user__username=username).first()  # Verifica se o usuário já existe
 
         # Cria o usuário e registra comum
-        if user is None:
-            user = CustomUserManager.objects.create_user(username=username, telefone=telefone)  # Use o modelo CustomUser
-            user.set_password(senha)
-            user.is_active = True
+        if cliente is None:
+            cliente = Cliente(nome=nome, telefone=telefone) 
+            user = User.objects.create_user(username=username, password=senha)
             user.save()
-
-            cliente = Cliente(usuario=user, nome=nome)
+            user
+            cliente.user = user
             cliente.save()
-            return redirect("login:login_adm")
+             # Use o modelo CustomUser
+            return redirect("login:login_cliente")
         else:
             messages.error(request, "Usuário já cadastrado")
             return render(request, 'cadastro_cliente.html')
