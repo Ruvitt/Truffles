@@ -1,1 +1,27 @@
+.background_basic {
+    background-color: #7BF0C3;
+}
 
+.text_basic {
+    color: #FF8C94;
+}
+
+.btn_background_secondary {
+    background-color: #FF8C94;
+}
+
+.btn_background_secondary:hover {
+    background-color: #FF8C94;
+}
+
+.card-body-product {
+    border-top: 1px solid #a5a2a2;
+}
+
+.card-img-top {
+    background-color: #F1F1F1;
+}
+
+.btn-rede:hover {
+    background-color: #FF8C94 !important;
+}

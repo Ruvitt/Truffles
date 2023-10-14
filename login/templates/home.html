@@ -1,43 +1,175 @@
-{%extends 'base.html'%}
-{%load static %}
+{%extends 'base.html'%} 
+{%load static %} 
 {%block conteudo%}
 
-<div class="container-fluid ">
-    <nav class="navbar navbar-expand-lg nav-underline">
-      <div class="container-fluid justify-content-end">
-        
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+<main>
+    <nav class="container-fluid navbar navbar-expand-lg nav-underline sticky-top bg-light pb-4 pt-4">
+        <div class="container-fluid">
+            <a class="navbar-brand ps-lg-4 ms-5" href="#">Truffles</a>
 
-        <div class="collapse navbar-collapse d-lg-flex" id="nav">
-          <a class="navbar-brand col-lg-3 me-0 ps-5" href="#">Truffles</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-          <ul class="navbar-nav col-lg-6 justify-content-lg-center">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Menu</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="">Contato</a>
-            </li>
-          </ul>
+            <div class="collapse navbar-collapse justify-content-lg-center" id="navbarTogglerDemo02">
 
-          <div class="d-lg-flex col-lg-3 justify-content-lg-end pe-5">
-            <i class="bi bi-person"></i>
-          </div>
+            <ul class="navbar-nav mb-2 mb-lg-0">
+                <li class="nav-item me-3 ms-3">
+                    <a class="nav-link active" href="#">Home</a>
+                </li>
+                <li class="nav-item me-3 ms-3">
+                    <a class="nav-link" href="/login_cliente">Menu</a>
+                </li>
+                <li class="nav-item me-3 ms-3">
+                    <a class="nav-link" href="#contato">Contato</a>
+                </li>
+            </ul>
+            </div>
+
+            <div class="d-lg-flex justify-content-lg-end me-5 pe-4" id="person_icon_box">
+                <i class="bi bi-person"></i>
+            </div>
         </div>
-      </div>
     </nav>
-</div>
 
-<!-- Jquery funcionando -->
-<script> 
-    $(document).ready(function(){
-        
+    <section class="container-fluid mb-3" style="background-image: url(static/img/background_hero.png);">
+        <div class="container py-5 justify-content-lg-center">
+            <div class="row align-items-center">
+                <div class="col-6" id="hero_text">
+                    <h1 class="display-2 mb-3 title-hero">Os melhores doces do campus</h1>
+                    <p class="fs-3">delicias a um click</p>
+                    
+                    <a class="btn btn_background_secondary text-white btn-lg rounded-pill px-5" href="/login_cliente">Menu</a>
+                </div>
+                <div class="col-6" id="hero_img">
+                    <img class="image-fluid" src="{% static 'img/doces_hero.png' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container-fluid mb-4">
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <h2 class="text_basic mb-3 mt-5 col-12 text-center">Nossas variadades</h2>
+                <h1 class="bold col-12 text-center mb-2">Doces</h1>
+                <h4 class="text-center">Os melhores doces de SPP!</h4>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card mx-auto mb-5" style="width: 18rem;">
+                        <img src="{% static 'img/bonbon1.png' %}" class="card-img-top p-4" alt="...">
+                        <div class="card-body card-body-product pb-2">
+                            <h4 class="card-title bold text-center">Alfajor</h4>
+                            <p class="card-text text-center">Lorem ipsum</p>
+                            <div class="row align-items-center">
+                                <div class="col-10">
+                                    <h3>RS 3.00</h3>
+                                </div>
+                                <div class="col-2">
+                                    <i class="bi bi-heart-fill" style="font-size: 1.2rem;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card mx-auto mb-5" style="width: 18rem;">
+                        <img src="{% static 'img/bonbon2.png' %}" class="card-img-top p-4" alt="...">
+                        <div class="card-body card-body-product pb-2">
+                            <h4 class="card-title bold text-center">Trufa</h4>
+                            <p class="card-text text-center">Lorem ipsum</p>
+                            <div class="row align-items-center">
+                                <div class="col-10">
+                                    <h3>RS 3.00</h3>
+                                </div>
+                                <div class="col-2">
+                                    <i class="bi bi-heart-fill" style="font-size: 1.2rem;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card mx-auto mb-5" style="width: 18rem;">
+                        <img src="{% static 'img/bonbon3.png' %}" class="card-img-top p-4" alt="...">
+                        <div class="card-body card-body-product pb-2">
+                            <h4 class="card-title bold text-center">Cone trufado</h4>
+                            <p class="card-text text-center">Lorem ipsum </p>
+                            <div class="row align-items-center">
+                                <div class="col-10">
+                                    <h3>RS 3.00</h3>
+                                </div>
+                                <div class="col-2">
+                                    <i class="bi bi-heart-fill" style="font-size: 1.2rem;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato">
+        <div class="container-fluid" style="background-image: url(static/img/background_footer.png); background-repeat: no-repeat; background-size: cover;">
+            <div class="container py-4">
+                <h1 class="bold text-center mb-3"> Entre em contato</h1>
+                <h4 class="text-center">IFRN - Campus SPP</h4>
+                <h4 class="text-center">+55 (84) 98708-7658</h4>
+                <h4 class="text-center mb-3">LayzaDasTrufa@gmail.com</h4>
+
+                <div class="row justify-content-center pb-4" style="border-bottom: 1px solid #4C8670;">
+                    <div class="col-12 text-center">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-light btn-rede p-3 px-4 me-2 ms-2 rounded-5"><i class="bi bi-instagram" style="font-size: 1.4rem;"></i></button>
+                            <button type="button" class="btn btn-light btn-rede p-3 px-4 me-2 ms-2 rounded-5"><i class="bi bi-whatsapp" style="font-size: 1.4rem;"></i></button>
+                            <button type="button" class="btn btn-light btn-rede p-3 px-4 me-2 ms-2 rounded-5"><i class="bi bi-twitter" style="font-size: 1.4rem;"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <h4 class="text-center pb-2 pt-5">© 2023 Truffles. ALL RIGHT RESERVED.</h4>
+            </div>
+        </div>
+    </section>
+</main>
+
+{%endblock%} 
+{%block scripts%}
+<script>
+  $(document).ready(function () {
+    if ($(window).width() < 992) {
+        $("#person_icon_box").hide();
+        $("#hero_text").removeClass("col-6");
+        $("#hero_img").removeClass("col-6");
+        $("#hero_text").addClass("col-12");
+        $(".nav-item").removeClass("me-3");
+        $(".nav-item").removeClass("ms-3");
+        $("#hero_img").hide();
+    }
+
+    $(window).resize(function () {
+        if ($(window).width() < 992) {
+            $("#person_icon_box").hide();
+            $("#hero_text").removeClass("col-6");
+            $("#hero_img").removeClass("col-6");
+            $("#hero_img").hide()
+            $("#hero_text").addClass("col-12");
+
+            $(".nav-item").removeClass("me-3");
+            $(".nav-item").removeClass("ms-3");
+        } else {
+            $("#person_icon_box").show();
+            $("#hero_img").show();
+            $("#hero_text").removeClass("col-12");
+            $("#hero_text").addClass("col-6");
+            $("#hero_img").addClass("col-6");
+
+            $(".nav-item").addClass("me-3");
+            $(".nav-item").addClass("ms-3");
+        }
     });
+  });
 </script>
-
 {%endblock%}
