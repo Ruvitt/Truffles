@@ -3,7 +3,7 @@
 {% block conteudo %}
 <div class="fundo d-flex justify-content-center align-items-center">
     <main class="w-75 m-auto formulario">
-        <form method="post" enctype="multipart/form-data" action="{% url 'login:cadastro_cliente' %}">
+        <form method="post" enctype="multipart/form-data" action="{% url 'login:cadastro_cliente' %}" onsubmit="return validarForm()">
             {% csrf_token %}
             {% if messages %}
             <ul class="messages">
@@ -20,8 +20,8 @@
                 <label class="nome_input" for="floatingInput">Nome</label>
             </div>
             <div class="form-floating mb-4">
-                <input type="text" placeholder="Telefone" name="telefone" class="form-control opacity-50" id="floatingInput">
-                <label class="nome_input" for="floatingInput">Telefone</label>
+                <input type="text" placeholder="Telefone" name="telefone" class="form-control opacity-50" id="telefoneInput">
+                <label class="nome_input" for="telefoneInput">Telefone</label>
             </div>
             <div class="form-floating mb-4">
                 <input type="password" placeholder="Senha" name="senha" class="form-control opacity-50" id="floatingInput">
@@ -38,4 +38,22 @@
         </form>
     </main>
 </div>
+
+<script>
+function validarForm() {
+    var telefoneInput = document.getElementById('telefoneInput');
+    var telefoneValue = telefoneInput.value;
+
+    // Usando uma expressão regular para verificar se o telefone contém apenas números
+    var telefoneRegex = /^\d+$/;
+
+    if (!telefoneRegex.test(telefoneValue)) {
+        alert("O campo Telefone deve conter apenas números.");
+        telefoneInput.focus();
+        return false; // Impede o envio do formulário
+    }
+
+    return true; // Permite o envio do formulário se o telefone estiver correto
+}
+</script>
 {% endblock %}
