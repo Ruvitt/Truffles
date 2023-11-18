@@ -16,9 +16,15 @@ class Vendedor(models.model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     disponibilidade = models.BooleanField(default=True)
 
+def __str__(self):
+        return self.nome
+
 class Produto(models.Model):
     nome = models.CharField(max_length=50)
     sabor = models.CharField(max_length=50)
     quantidade = models.IntegerField(default=0)
     preco = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
+
+def __str__(self):
+        return self.nome
     
