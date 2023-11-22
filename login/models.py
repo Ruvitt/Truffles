@@ -10,7 +10,7 @@ class Cliente(models.Model):
     def __str__(self):
         return self.nome
     
-class Vendedor(models.model):
+class Vendedor(models.Model):
     nome = models.CharField(max_length=50)
     telefone = models.CharField(max_length=15, unique=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)

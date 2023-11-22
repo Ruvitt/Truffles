@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Dashboard</title>
+{% endblock  %}
+
+{% block conteudo %}
+
+<main>
+    <div class="container">
+        <div class="page-title mt-5">
+            <h1>Olá, vendedor</h1>
+        </div>
+        
+        <section class="catalogo mt-5">
+            <h2>Produtos registrados</h2>
+            <div class="produtos row mt-3">
+                {% for produto in produtos %}
+                <div class="col-4">
+                    <div class="card">
+                        <img src="{{ produto.imagem }}" class="card-img-top" alt="Imagem do Produto">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ produto.nome }}</h5>
+                            <p class="card-text">Sabores: {{ produto.sabor }}</p>
+                            <p class="card-text">Preço: {{ produto.preco }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+</main>
+
+
+{% endblock  %}
+
+{% block scripts %}
+
+<script>
+    $(document).ready(function() {
+        $('#nav-link-home').removeClass('active');
+        $('#nav-link-menu').addClass('active');
+    });
+</script>
+    
+{% endblock %}

@@ -1,36 +1,16 @@
 {%extends 'base.html'%} 
 {%load static %} 
+
+{% block title %}
+<title>Home</title>
+{% endblock  %}
+
+
+
 {%block conteudo%}
 
 <main>
-    <nav class="container-fluid navbar navbar-expand-lg nav-underline sticky-top bg-light pb-4 pt-4">
-        <div class="container-fluid">
-            <a class="navbar-brand ps-lg-4 ms-5" href="#">Truffles</a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse justify-content-lg-center" id="navbarTogglerDemo02">
-
-            <ul class="navbar-nav mb-2 mb-lg-0">
-                <li class="nav-item me-3 ms-3">
-                    <a class="nav-link active" href="#">Home</a>
-                </li>
-                <li class="nav-item me-3 ms-3">
-                    <a class="nav-link" href="/login_cliente">Menu</a>
-                </li>
-                <li class="nav-item me-3 ms-3">
-                    <a class="nav-link" href="#contato">Contato</a>
-                </li>
-            </ul>
-            </div>
-
-            <div class="d-lg-flex justify-content-lg-end me-5 pe-4" id="person_icon_box">
-                <i class="bi bi-person"></i>
-            </div>
-        </div>
-    </nav>
 
     <section class="container-fluid mb-3" style="background-image: url(static/img/background_hero.png);">
         <div class="container py-5 justify-content-lg-center">
@@ -139,6 +119,8 @@
 {%block scripts%}
 <script>
   $(document).ready(function () {
+    
+
     if ($(window).width() < 992) {
         $("#person_icon_box").hide();
         $("#hero_text").removeClass("col-6");
