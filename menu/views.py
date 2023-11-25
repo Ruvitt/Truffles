@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, logout
 from django.db import models
 from .models import Produto
 from django.contrib import messages
@@ -20,3 +20,7 @@ def registrar_produto(request):
         return redirect('menu:menu')
     else:
         return render(request, 'registrar_produto.html')
+
+def sair(request):
+    logout(request)
+    return redirect('login:home')

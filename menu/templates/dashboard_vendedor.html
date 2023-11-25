@@ -19,7 +19,7 @@
                 {% for produto in produtos %}
                 <div class="col-4">
                     <div class="card">
-                        <img src="{{ produto.imagem }}" class="card-img-top" alt="Imagem do Produto">
+                        <img src="/media/{{ produto.imagem }}" class="card-img-top" alt="Imagem do Produto">
                         <div class="card-body">
                             <h5 class="card-title">{{ produto.nome }}</h5>
                             <p class="card-text">Sabores: {{ produto.sabor }}</p>
