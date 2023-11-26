@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect, logout
+from django.shortcuts import render, redirect
+from django.contrib.auth import logout
 from django.db import models
 from .models import Produto
 from django.contrib import messages
