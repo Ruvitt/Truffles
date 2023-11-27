@@ -1,0 +1,45 @@
+{%extends 'base.html'%}
+{%load static %}
+
+{% block title %}
+<title>Login vendedor</title>
+{% endblock  %}
+
+{% block navbar %}
+    
+{% endblock  %}
+
+{%block conteudo%}
+<div class="fundo d-flex justify-content-center align-items-center">
+    <main class="w-100 m-auto formulario">
+        <form class="p-3" method="post">
+            {% csrf_token %}
+            <div>
+                <h2>Vendedor, faça seu login</h2>
+            </div>
+            {% if messages %}
+        
+            <ul class="messages">
+                {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <div class="form-floating mb-3">
+                <input type="text" placeholder="Login" name="login" class="form-control opacity-50" id="floatingInput">
+                <label class="nome_input" for="floatingInput">Login</label>
+            </div>
+            <div class="form-floating mb-4">
+                <input type="password" placeholder="Senha" name="senha" class="form-control opacity-50" id="floatingInput">
+                <label class="nome_input" for="floatingInput">Senha</label>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <a class="text-dark" href="/cadastro_cliente">Não tenho conta criada</a>
+                <input type="submit" class="btn py-2 btn-danger py-2 px-3 custom_btn" value="Entrar" style="color: rgb(255, 255, 255); 
+                font-size: 16px; 
+                background-color: #DC414C; "/>
+            </div>
+        </form>
+    </main>
+</div>
+{%endblock%}
