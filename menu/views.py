@@ -24,18 +24,6 @@ def registrar_produto(request):
         return render(request, 'registrar_produto.html')
 
 
-def cadastro_cliente(request):
-    if request.POST:
-        username = request.POST.get('login')
-        senha = request.POST.get('senha')
-        user = authenticate(username=username, password=senha)
-        print(user, username, senha)
-        if user is not None:
-            login(request, user)
-            return redirect('/menu')  # enquanto não temos a home do cliente logado
-        else:
-            messages.error(request, 'Erro no login ou senha')
-    return render(request, 'login_cliente.html')
 def cadastro_vendedor(request):
     if request.POST:
         username = request.POST.get('login')
