@@ -1,14 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.db import models
-from .models import Cliente
+from .models import Cliente, Vendedor
 from django.contrib import messages
 from django.contrib.auth.models import User
 
 def home(request):
     return render(request, 'home.html')
-
-#TODO: Aprimorar as condicoes de login e cadastro
 
 def login_cliente(request):
     if request.POST:
@@ -46,6 +44,32 @@ def cadastro_cliente(request):
             return render(request, 'cadastro_cliente.html')
 
     return render(request, 'cadastro_cliente.html')
+
+def cadastro_vendedor(request):
+    if request.POST:
+        username = request.POST.get('login')
+        senha = request.POST.get('senha')
+        nome = request.POST.get('nome')
+        telefone = request.POST.get('telefone')
+        disponibilidade = request.POST.get('disponibilidade')
+        vendedor = Vendedor.objects.filter(user__username=username).first()  # Verifica se o usuário já existe
+
+
+        # Cria o usuário e registra comum
+        if vendedor is None:
+            vendedor = Vendedor(nome=nome, telefone=telefone, disponibilidade=disponibilidade) 
+            user = User.objects.create_superuser(username=username, password=senha)
+            user.save()
+            user
+            vendedor.user = user
+            vendedor.save()
+             # Use o modelo CustomUser
+            return redirect("menu:login_vendedor")
+        else:
+            messages.error(request, "Vendedor já cadastrado")
+            return render(request, 'cadastro_vendedor.html')
+
+    return render(request, 'cadastro_vendedor.html')
 
 def sair(request):
     logout(request)

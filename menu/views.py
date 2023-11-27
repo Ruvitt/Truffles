@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from django.db import models 
-from .models import Vendedor, Produto
+from .models import Produto
 from django.contrib import messages
 from django.contrib.auth.models import User
 
@@ -22,33 +22,6 @@ def registrar_produto(request):
         return redirect('menu:menu')
     else:
         return render(request, 'registrar_produto.html')
-
-
-def cadastro_vendedor(request):
-    if request.POST:
-        username = request.POST.get('login')
-        senha = request.POST.get('senha')
-        nome = request.POST.get('nome')
-        telefone = request.POST.get('telefone')
-        disponibilidade = request.POST.get('disponibilidade')
-        vendedor = Vendedor.objects.filter(user__username=username).first()  # Verifica se o usuário já existe
-
-
-        # Cria o usuário e registra comum
-        if vendedor is None:
-            vendedor = Vendedor(nome=nome, telefone=telefone, disponibilidade=disponibilidade) 
-            user = User.objects.create_superuser(username=username, password=senha)
-            user.save()
-            user
-            vendedor.user = user
-            vendedor.save()
-             # Use o modelo CustomUser
-            return redirect("menu:login_vendedor")
-        else:
-            messages.error(request, "Vendedor já cadastrado")
-            return render(request, 'cadastro_vendedor.html')
-
-    return render(request, 'cadastro_vendedor.html')
 
 def sair(request):
     logout(request)
