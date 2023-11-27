@@ -1,5 +1,12 @@
 {%extends 'base.html'%} 
 {%load static %} 
+
+{% block title %}
+<title>Home</title>
+{% endblock  %}
+
+
+
 {%block conteudo%}
 
 <main>
@@ -20,7 +27,9 @@
                 <li class="nav-item me-3 ms-3">
                     <a class="nav-link" href="/login_cliente">Menu</a>
                 </li>
-                
+                <li class="nav-item me-3 ms-3">
+                    <a class="nav-link" href="#contato">Contato</a>
+                </li>
             </ul>
             </div>
 
@@ -80,7 +89,7 @@
                             <p class="card-text text-center">Lorem ipsum</p>
                             <div class="row align-items-center">
                                 <div class="col-10">
-                                    <h3>R$ 2.50</h3>
+                                    <h3>RS 3.00</h3>
                                 </div>
                                 <div class="col-2">
                                     <i class="bi bi-heart-fill" style="font-size: 1.2rem;"></i>
@@ -97,7 +106,7 @@
                             <p class="card-text text-center">Lorem ipsum </p>
                             <div class="row align-items-center">
                                 <div class="col-10">
-                                    <h3>R$ 5.00</h3>
+                                    <h3>RS 3.00</h3>
                                 </div>
                                 <div class="col-2">
                                     <i class="bi bi-heart-fill" style="font-size: 1.2rem;"></i>
@@ -137,6 +146,8 @@
 {%block scripts%}
 <script>
   $(document).ready(function () {
+    
+
     if ($(window).width() < 992) {
         $("#person_icon_box").hide();
         $("#hero_text").removeClass("col-6");

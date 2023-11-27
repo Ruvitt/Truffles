@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-<title>Cadastro</title>
+<title>Cadastro de vendedor</title>
 {% endblock  %}
 
 {% block navbar %}
@@ -12,7 +12,7 @@
 {% block conteudo %}
 <div class="fundo d-flex justify-content-center align-items-center">
     <main class="w-75 m-auto formulario">
-        <form method="post" enctype="multipart/form-data" action="{% url 'login:cadastro_cliente' %}" onsubmit="return validarForm()">
+        <form method="post" enctype="multipart/form-data" action="{% url 'menu:cadastro_vendedor' %}" onsubmit="return validarForm()">
             {% csrf_token %}
             {% if messages %}
             <ul class="messages">

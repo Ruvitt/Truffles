@@ -5,7 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Truffles</title>
+    {% block title %}
+    <title>Truffles</title>  
+    {% endblock  %}
 
     <!-- Styles/boostrap -->
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
@@ -14,6 +16,38 @@
     <link rel="stylesheet" href="{% static 'bootstrap-icons/bootstrap-icons.min.css' %}">
 </head>
 <body>
+
+    <!-- Navbar -->
+    {% block navbar %}
+    <nav class="container-fluid navbar navbar-expand-lg nav-underline sticky-top bg-light pb-4 pt-4">
+        <div class="container-fluid">
+            <a class="navbar-brand ps-lg-4 ms-5" href="http://127.0.0.1:8000">Truffles</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-lg-center" id="navbarTogglerDemo02">
+
+            <ul class="navbar-nav mb-2 mb-lg-0">
+                <li class="nav-item me-3 ms-3">
+                    <a class="nav-link active" id="nav-link-home" href="http://127.0.0.1:8000">Home</a>
+                </li>
+                <li class="nav-item me-3 ms-3">
+                    <a class="nav-link" id="nav-link-menu" href="/login_cliente">Menu</a>
+                </li>
+                <li class="nav-item me-3 ms-3">
+                    <a class="nav-link" id="nav-link-contato" href="#contato">Contato</a>
+                </li>
+            </ul>
+            </div>
+
+            <div class="d-lg-flex justify-content-lg-end me-5 pe-4" id="person_icon_box">
+                <i class="bi bi-person"></i>
+            </div>
+        </div>
+    </nav>
+    {% endblock  %}
   
     {%block conteudo%}{%endblock%}
 

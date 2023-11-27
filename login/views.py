@@ -8,6 +8,8 @@ from django.contrib.auth.models import User
 def home(request):
     return render(request, 'home.html')
 
+#TODO: Aprimorar as condicoes de login e cadastro
+
 def login_cliente(request):
     if request.POST:
         username = request.POST.get('login')
@@ -16,7 +18,7 @@ def login_cliente(request):
         print(user, username, senha)
         if user is not None:
             login(request, user)
-            return redirect('/home')  # enquanto não temos a home do cliente logado
+            return redirect('/menu')  # enquanto não temos a home do cliente logado
         else:
             messages.error(request, 'Erro no login ou senha')
     return render(request, 'login_cliente.html')
