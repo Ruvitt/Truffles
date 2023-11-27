@@ -2,17 +2,58 @@
 {% load static %}
 
 {% block title %}
-<title>Registrar Produto</title>
+<title>Registrar produto</title>
+{% endblock  %}
+
+{% block navbar %}
+    
 {% endblock  %}
 
 {% block conteudo %}
-
-
-
-{% endblock  %}
-
-{% block scripts %}
-
-
+<div class="fundo d-flex justify-content-center align-items-center">
+    <main class="w-75 m-auto formulario">
+        <form method="post" enctype="multipart/form-data" action="{% url 'menu:registrar_produto' %}">
+            {% csrf_token %}
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <div>
+                <h2 class="py-3">Produto</h2>
+            </div>
+            <div class="form-floating mb-4">
+                <input type="text" placeholder="Nome" name="nome_produto" class="form-control opacity-50" id="floatingInput">
+                <label class="nome_input" for="floatingInput">Nome</label>
+            </div>
+            <div class="form-floating mb-4">
+                <input type="text" placeholder="Nome" name="descricao_produto" class="form-control opacity-50" id="floatingInput">
+                <label class="nome_input" for="floatingInput">Descrição</label>
+            </div>
+            <div class="form-floating mb-4">
+                {{ form.sabor }}
+                <label class="nome_input" for="{{ form.sabor.id_for_label }}">Sabor</label>
+            </div>            
+            <div class="form-floating mb-4">
+                <input type="number" placeholder="Senha" name="preco_produto" class="form-control opacity-50" id="floatingInput">
+                <label class="nome_input" for="floatingInput">Preço</label>
+            </div>
+            <div class="form-floating mb-4">
+                <input type="number" placeholder="Senha" name="quantidade_produto" class="form-control opacity-50" id="floatingInput">
+                <label class="nome_input" for="floatingInput">Quantidade</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="file" name="imagem_produto" class="form-control opacity-50" id="fotoInput" accept="image/*">
+                <label for="fotoInput">Foto</label>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <a class="button btn btn-dark py-2 px-3" href="/dashboard_vendedor">Cancelar</a>
+                <button class="btn py-2 btn-danger">Registrar</button>
+            </div>
+        </form>
+    </main>
+</div>
 
 {% endblock %}
