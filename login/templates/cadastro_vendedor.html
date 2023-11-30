@@ -33,8 +33,8 @@
                 <label class="nome_input" for="telefoneInput">Telefone</label>
             </div>
             <div class="form-floating mb-4">
-                <input type="password" placeholder="Senha" name="senha" class="form-control opacity-50" id="floatingInput">
-                <label class="nome_input" for="floatingInput">Senha</label>
+                <input type="password" placeholder="Senha" name="senha" class="form-control opacity-50" id="senhaInput">
+                <label class="nome_input" for="senhaInput">Senha</label>
             </div>
             <div class="form-floating mb-4">
                 <input type="text" placeholder="Login" name="login" class="form-control opacity-50" id="floatingInput">
@@ -58,6 +58,17 @@ function validarForm() {
     if (!telefoneRegex.test(telefoneValue)) {
         alert("O campo Telefone deve conter apenas números.");
         telefoneInput.focus();
+        return false;
+    }
+
+    var senhaInput = document.getElementById('senhaInput');
+    var senhaValue = senhaInput.value;
+
+    var senhaRegex = /^(?=.*[!@#$%^&*(),.?":{}|<>])(?=.*[0-9a-zA-Z]).{6,12}$/;
+
+    if (!senhaRegex.test(senhaValue)) {
+        alert("A senha deve conter pelo menos um caractere especial e ter entre 6 e 12 dígitos.");
+        senhaInput.focus();
         return false;
     }
 
