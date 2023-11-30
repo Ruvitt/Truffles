@@ -56,6 +56,8 @@ def cadastro_vendedor(request):
         if vendedor is None:
             vendedor = Vendedor(nome=nome, telefone=telefone) 
             user = User.objects.create_superuser(username=username, password=senha)
+            user.is_active = False
+            user.is_staff = True
             user.save()
             user
             vendedor.user = user
@@ -64,6 +66,7 @@ def cadastro_vendedor(request):
             return redirect("login:login_vendedor")
         else:
             messages.error(request, "Vendedor já cadastrado")
+            messages.error(request, 'Telefone já cadastrado')
             return render(request, 'cadastro_vendedor.html')
 
     return render(request, 'cadastro_vendedor.html')
