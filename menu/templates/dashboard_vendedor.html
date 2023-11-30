@@ -11,8 +11,14 @@
 
 <main>
     <div class="container">
-        <div class="page-title mt-5">
-            <h1>Olá, {{vendedor.name}}</h1>
+        <div class="page-title mt-5 row">
+            <div class="col-8">
+                <h1>Olá, {nome do vendedor}</h1>
+            </div>
+            <div class="col-4 d-flex gap-2">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registrar_produto_modal">Adicionar produto</button>
+                <button type="button" class="btn btn-success">Liberar produtos</button>
+            </div>
         </div>
         
         <section class="catalogo mt-5">
@@ -32,6 +38,48 @@
                 {% endfor %}
             </div>
         </section>
+
+        <!-- Modal -->
+        <div class="modal fade" id="registrar_produto_modal" tabindex="-1" aria-labelledby="registrar_produto" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="modal-title fs-5" id="modal-lable">
+                            Novo produto
+                        </div>
+                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="nome_produto" class="form-label">Produto</label>
+                                <input type="text" class="form-control" id="nome_produto">
+                            </div>
+                            <div class="mb-3">
+                                <label for="sabor_produto" class="form-label">Sabor</label>
+                                <input type="text" class="form-control" id="sabor_produto">
+                            </div>
+                            <div class="mb-3">
+                                <label for="preco_produto" class="form-label">Preço</label>
+                                <input type="text" class="form-control" id="preco_produto">
+                            </div>
+                            <div class="mb-3">
+                                <label for="quantidade_produto" class="form-label">Quantidade</label>
+                                <input type="number" class="form-control" id="quantidade_produto">
+                            </div>
+                            <div class="mb-3">
+                                <label for="imagem_produto" class="form-label">Imagem</label>
+                                <input type="text" class="form-control" id="imagem_produto">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-success">Adicionar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </main>
 
