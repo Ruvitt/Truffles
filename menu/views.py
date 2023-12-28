@@ -7,6 +7,10 @@ def menu(request):
     produtos = Produto.objects.all()
     return render(request, 'dashboard_vendedor.html', {'produtos': produtos})
 
+def dashboard_cliente(request):
+    produtos = Produto.objects.all()
+    return render(request, 'dashboard_cliente.html', {'produtos': produtos})
+
 def registrar_produto(request):
     if request.method == 'POST':
         nome_produto = request.POST.get('nome_produto')
@@ -35,6 +39,24 @@ def registrar_produto(request):
             return redirect('menu:menu')
 
     return render(request, 'registrar_produto.html')
+
+def comprar_produto(request, produto_id):
+    produto = Produto.objects.get(pk=produto_id)
+    if request.method == 'POST':
+        quantidade_produto = request.POST.get('quantidade_produto')
+    try:
+        quantidade = int(quantidade_produto)
+        if quantidade <= 0:
+            raise ValueError("A quantidade deve ser maior que zero.")
+        
+        # Verifique se a quantidade está disponível em estoque
+        if quantidade > produto.quantidade:
+            raise ValueError("Quantidade indisponível em estoque.")
+    
+    except ValueError as e:
+        # Trate o erro e forneça uma resposta adequada ao usuário
+        return render(request, 'sua_template_de_erro.html', {'erro': str(e)})
+        
 
 def sair(request):
     logout(request)

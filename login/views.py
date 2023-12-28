@@ -16,7 +16,7 @@ def login_cliente(request):
         print(user, username, senha)
         if user is not None:
             login(request, user)
-            return redirect('/menu')  # enquanto não temos a home do cliente logado
+            return redirect('menu:dashboard_cliente')
         else:
             messages.error(request, 'Erro no login ou senha')
     return render(request, 'login_cliente.html')
@@ -79,7 +79,7 @@ def login_vendedor(request):
         print(user, username, senha)
         if user is not None:
             login(request, user)
-            return redirect('/menu')  # enquanto não temos a home do cliente logado
+            return redirect('/menu')
         else:
             messages.error(request, 'Erro no login ou senha')
     return render(request, 'login_vendedor.html')
