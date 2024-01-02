@@ -1,15 +1,23 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from .models import Produto
+from login.models import Cliente, Vendedor
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 def menu(request):
     produtos = Produto.objects.all()
     return render(request, 'dashboard_vendedor.html', {'produtos': produtos})
 
+
+@login_required(login_url="login:login_cliente/")
 def dashboard_cliente(request):
     produtos = Produto.objects.all()
-    return render(request, 'dashboard_cliente.html', {'produtos': produtos})
+    cliente = Cliente.objects.filter(id=request.user.id).first()
+    context = {}
+    context['produtos'] = produtos
+    context['cliente'] = cliente
+    return render(request, 'dashboard_cliente.html', context)
 
 def registrar_produto(request):
     if request.method == 'POST':

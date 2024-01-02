@@ -76,7 +76,7 @@
         // Atualiza o valor total com base na quantidade escolhida
         $('#quantidade_produto').on('input', function() {
             var quantidade = $(this).val();
-            var precoUnitario = parseFloat('{{ produto.preco }}');
+            var precoUnitario = parseFloat('{{produto.preco}}'); 
             var valorTotal = quantidade * precoUnitario;
             $('#valor_total').text(valorTotal.toFixed(2));
         });

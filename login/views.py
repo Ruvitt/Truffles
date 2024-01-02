@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 def home(request):
     return render(request, 'home.html')
 
-def login_cliente(request):
+def login_cliente(request): 
     if request.POST:
         username = request.POST.get('login')
         senha = request.POST.get('senha')
