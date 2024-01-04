@@ -4,6 +4,7 @@ from django.db import models
 from .models import Cliente, Vendedor
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 def home(request):
     return render(request, 'home.html')
@@ -16,7 +17,7 @@ def login_cliente(request):
         print(user, username, senha)
         if user is not None:
             login(request, user)
-            return redirect('menu:dashboard_cliente')
+            return redirect(reverse('menu:dashboard_cliente'))
         else:
             messages.error(request, 'Erro no login ou senha')
     return render(request, 'login_cliente.html')

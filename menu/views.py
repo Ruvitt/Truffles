@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import logout
 from .models import Produto
 from login.models import Cliente, Vendedor
 from django.contrib import messages
+from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
 def menu(request):
@@ -10,13 +11,12 @@ def menu(request):
     return render(request, 'dashboard_vendedor.html', {'produtos': produtos})
 
 
-@login_required(login_url="login:login_cliente/")
+@login_required(login_url="login:/login_cliente/")
 def dashboard_cliente(request):
     produtos = Produto.objects.all()
-    cliente = Cliente.objects.filter(id=request.user.id).first()
     context = {}
     context['produtos'] = produtos
-    context['cliente'] = cliente
+    context['cliente'] = Cliente.objects.filter(user_id=request.user.id).first()
     return render(request, 'dashboard_cliente.html', context)
 
 def registrar_produto(request):
@@ -48,24 +48,30 @@ def registrar_produto(request):
 
     return render(request, 'registrar_produto.html')
 
-def comprar_produto(request, produto_id):
-    produto = Produto.objects.get(pk=produto_id)
-    if request.method == 'POST':
-        quantidade_produto = request.POST.get('quantidade_produto')
-    try:
-        quantidade = int(quantidade_produto)
-        if quantidade <= 0:
-            raise ValueError("A quantidade deve ser maior que zero.")
-        
-        # Verifique se a quantidade está disponível em estoque
-        if quantidade > produto.quantidade:
-            raise ValueError("Quantidade indisponível em estoque.")
+def comprar_produto(request):
     
-    except ValueError as e:
-        # Trate o erro e forneça uma resposta adequada ao usuário
-        return render(request, 'sua_template_de_erro.html', {'erro': str(e)})
+    if request.method == 'POST':
+        produto = Produto.objects.filter(object_id=request.objects.id).first()
+        quantidade_produto = request.POST.get('quantidade_produto')
+        sabor_produto = request.POST.get('sabor_produto')
         
 
+
+        # Verificações de validade da quantidade
+        if quantidade_produto <= 0:
+            return render(request, {'mensagem': 'A quantidade deve ser maior que zero.'})
+
+        if quantidade_produto > produto.quantidade:
+            return render(request, {'mensagem': 'A quantidade desejada excede o estoque disponível.'})
+        
+        produto.quantidade -= quantidade_produto
+        produto.save()
+
+        return HttpResponseRedirect('dashboard_cliente/')
+
+ 
+    return render(request, 'dashboard_cliente.html', context)
+    
 def sair(request):
     logout(request)
     return redirect('login:home')
