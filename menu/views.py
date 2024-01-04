@@ -48,15 +48,12 @@ def registrar_produto(request):
 
     return render(request, 'registrar_produto.html')
 
-def comprar_produto(request):
-    
+def comprar_produto(request, pk):
+    produto = Produto.objects.filter(id=pk).first()
     if request.method == 'POST':
-        produto = Produto.objects.filter(object_id=request.objects.id).first()
         quantidade_produto = request.POST.get('quantidade_produto')
         sabor_produto = request.POST.get('sabor_produto')
         
-
-
         # Verificações de validade da quantidade
         if quantidade_produto <= 0:
             return render(request, {'mensagem': 'A quantidade deve ser maior que zero.'})
@@ -64,13 +61,19 @@ def comprar_produto(request):
         if quantidade_produto > produto.quantidade:
             return render(request, {'mensagem': 'A quantidade desejada excede o estoque disponível.'})
         
+        try:
+            quantidade_produto = int(quantidade_produto)
+        except ValueError:
+            return render(request, 'dashboard_cliente.html', {'mensagem': 'A quantidade deve ser um número inteiro válido.'})
+
+        
         produto.quantidade -= quantidade_produto
         produto.save()
 
-        return HttpResponseRedirect('dashboard_cliente/')
 
- 
-    return render(request, 'dashboard_cliente.html', context)
+        return HttpResponseRedirect('/dashboard_cliente/')
+
+    return render(request, 'dashboard_cliente.html', {'produto': produto}, {'sabor': sabor_produto})
     
 def sair(request):
     logout(request)
